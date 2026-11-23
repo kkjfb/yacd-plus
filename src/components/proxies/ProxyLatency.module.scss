@@ -1,0 +1,11 @@
+.proxyLatency {
+  border-radius: 20px;
+  color: #eee;
+  font-size: 0.6em;
+  /* 不要让 “16 ms” 被挤成两行 */
+  white-space: nowrap;
+  flex-shrink: 0;
+  @media screen and (min-width: 30em) {
+    font-size: 0.85em;
+  }
+}

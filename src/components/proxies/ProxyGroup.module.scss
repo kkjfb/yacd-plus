@@ -1,0 +1,29 @@
+.header {
+  margin-bottom: 12px;
+}
+
+.groupHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  /* 手机：整行不折行，测速按钮固定在标题行右侧 */
+  @media screen and (max-width: 30em) {
+    flex-wrap: nowrap;
+    gap: 2px;
+  }
+}
+
+.action {
+  margin: 0 5px;
+
+  @media screen and (max-width: 30em) {
+    margin: 0;
+    flex-shrink: 0;
+
+    /* 圆形测速按钮手机上收一点，别把标题挤跑 */
+    button {
+      padding: 6px;
+    }
+  }
+}

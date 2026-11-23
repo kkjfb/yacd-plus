@@ -1,0 +1,136 @@
+.proxy {
+  padding: 9px 11px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  outline: none;
+  border: 1px solid transparent;
+  &:focus {
+    border: 1px solid var(--color-focus-blue);
+  }
+
+  /* 宽度交给父级 grid 统一控制，这里只保证能被压缩 */
+  min-width: 0;
+  @media screen and (max-width: 30em) {
+    padding: 6px;
+    border-radius: 7px;
+  }
+  @media screen and (min-width: 30em) {
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  background-color: var(--color-bg-proxy);
+  &.now {
+    background-color: var(--color-focus-blue);
+    color: #ddd;
+  }
+  &.error {
+    opacity: 0.5;
+  }
+  &.selectable {
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      border-color: hsl(0deg, 0%, var(--card-hover-border-lightness));
+    }
+  }
+}
+
+.proxyType {
+  /* 这里显示的是“组当前使用的节点名”，可能含国旗 emoji，必须走带 Twemoji Country Flags 的字族 */
+  font-family: var(--font-normal);
+  font-size: 0.6em;
+  margin-right: 3px;
+  min-width: 0;
+  flex: 1 1 auto;
+  line-height: 1.3;
+  /* 前缀（xw🇲🇾 这类）单独成列，后面的名字才能整齐折行 */
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+  @media screen and (min-width: 30em) {
+    font-size: 0.78em;
+  }
+}
+
+.nodePrefix {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.nodeRest {
+  flex: 1 1 auto;
+  min-width: 0;
+  /* 最多两行，超出截断 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* 吃掉标题行剩下的高度并垂直居中：单行节点名会落在两行节点名的中间 */
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.proxyName {
+  width: 100%;
+  margin-bottom: 5px;
+  /* 组名要比下面的节点名明显大一号 */
+  font-size: 0.9em;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @media screen and (min-width: 30em) {
+    font-size: 1em;
+  }
+}
+
+.proxySmall {
+  --size: 13px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  position: relative;
+
+  &.now {
+    --size: 15px;
+    &:before {
+      --size-dot: 7px;
+      content: '';
+      position: absolute;
+      width: var(--size-dot);
+      height: var(--size-dot);
+      background-color: #fff;
+      // For non-primitive proxy type like "Selector", "LoadBalance", "DIRECT", etc. we are using a transparent
+      // background, and this selected indicator has a white background. In "light" them mode, the contrast
+      // between the bg of the indicator and the "background" is too small. In that case we want to add a
+      // border around this indicator so it's more distinguishable.
+      border: 1px solid var(--color-proxy-dot-selected-ind-bo);
+      border-radius: 4px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &.selectable {
+    transition: transform 0.1s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}

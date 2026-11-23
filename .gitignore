@@ -1,0 +1,20 @@
+# 依赖与本地缓存
+node_modules/
+.pnpm-store/
+
+# 构建产物：本仓库需要把它提交上去，
+# 这样别人 clone 下来就能直接用 public/ 部署（vite 的 outDir 就是 public/）
+!public/
+!public/**
+
+# 编辑器与系统文件
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 构建/调试产物
+dist/
+*.log
+.eslintcache
+src/**/*.map
