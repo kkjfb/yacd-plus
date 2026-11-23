@@ -2,6 +2,7 @@
 
 > 本仓库是 [haishanh/yacd](https://github.com/haishanh/yacd) 的修改版（fork），
 > 并非原作者发布。原始项目版权归 Haishan 所有，本项目在其基础上做了增量修改。
+> Copyright (c) 2026 kkjfb (modifications)
 > 
 > 在 [haishanh/yacd](https://github.com/haishanh/yacd) v0.3.8 基础上做的一处改动：**在代理组卡片上直接显示它当前实际使用的节点**。
 
@@ -40,7 +41,16 @@
 **没有改动**：路由、i18n、请求层、切换代理逻辑、主题/配色、其余页面（概览/规则/连接/配置/日志）。
 
 ## 安装
-总结最简单的安装方式：下载解压，替换整个yacd, 名字不能改，必须是yacd
+最简单的安装方式只有三步：
+
+1. 从 Releases 下载 yacd-plus-dist.zip
+2. 解压后，把里面的全部内容替换到路由器的 /usr/share/openclash/ui/yacd/ 目录
+3. 浏览器打开面板，Ctrl+F5 强刷一次
+
+| 要点 | 说明 |
+| 目录名不能改 | 必须保持 yacd，OpenClash 的菜单入口写死了这个路径 |
+| 覆盖而不是合并 | 直接删掉原目录再放新文件更稳妥 |
+| 一定要强刷 | 旧 Service Worker 可能返回旧页面 |
 
 ## 使用
 
