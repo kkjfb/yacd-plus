@@ -90,7 +90,7 @@ jobs:
           git push -f https://$GITHUB_ACTOR:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:$BRANCH
 
       - name: Send Notification
-        uses: haishanh/actions-telegram-notification@v1
+        uses: haishanh/actions-telegram-notification@v2
         if: ${{ always() }}
         with:
           notification-token: ${{ secrets.TG_NOTIFICATION_TOKEN }}
@@ -167,7 +167,7 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
 
       - name: Send Notification
-        uses: haishanh/actions-telegram-notification@v1
+        uses: haishanh/actions-telegram-notification@v2
         if: ${{ always() }}
         with:
           notification-token: ${{ secrets.TG_NOTIFICATION_TOKEN }}
