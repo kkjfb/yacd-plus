@@ -1,5 +1,8 @@
 # yacd-plus
 
+> 本仓库是 [haishanh/yacd](https://github.com/haishanh/yacd) 的修改版（fork），
+> 并非原作者发布。原始项目版权归 Haishan 所有，本项目在其基础上做了增量修改。
+> 
 > 在 [haishanh/yacd](https://github.com/haishanh/yacd) v0.3.8 基础上做的一处改动：**在代理组卡片上直接显示它当前实际使用的节点**。
 
 原版 YACD 的组卡片只显示「组名 / `Selector`·`URLTest` / 延迟」，子组（如「香港节点」「自动选择」）里到底跑的是哪个节点，需要点进去才知道。这个版本把它显示出来，其余界面、配色、交互一律不动。
