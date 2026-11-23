@@ -48,9 +48,20 @@
 仓库根目录下的 `public/` 就是构建产物，丢到任意静态服务器即可：
 
 ```sh
-# 部署到 OpenClash / iStoreOS 的 UI 目录
+# 把 public/ 里的内容整个替换掉 /usr/share/openclash/ui/yacd（OpenClash 自带的 YACD 面板目录）
 scp -r public/* root@192.168.1.1:/usr/share/openclash/ui/yacd/
+
+# 或者先打包，再在路由器上解压覆盖
+zip -r yacd-plus.zip public/*
+ssh root@192.168.1.1 "cp -r /usr/share/openclash/ui/yacd /usr/share/openclash/ui/yacd.bak"
+ssh root@192.168.1.1 "rm -rf /usr/share/openclash/ui/yacd && mkdir -p /usr/share/openclash/ui/yacd"
+scp yacd-plus.zip root@192.168.1.1:/tmp/
+ssh root@192.168.1.1 "cd /tmp && unzip -o yacd-plus.zip -d /usr/share/openclash/ui/yacd && rm -f /tmp/yacd-plus.zip"
 ```
+
+> 替换前已自动备份到 `/usr/share/openclash/ui/yacd.bak`，想回退就删掉新目录、把 `.bak` 改回来。
+>
+> **重要**：替换后浏览器里旧的 Service Worker 可能仍返回旧资源。如果打开还是旧界面，反注册一次 Service Worker 并清站点数据即可（本版之后会自动更新）。
 
 访问时带上面板所需的参数：
 
